@@ -1,11 +1,14 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
 import ContactForm from './components/ContactForm';
+import Filter from './components/Filter';
+import ContactList from './components/ContactList';
 
 class App extends Component {
   state = {
     contacts: [],
+    filter: '',
   };
 
   formSubmitHandler = ({ name, number }) => {
@@ -17,6 +20,14 @@ class App extends Component {
     }));
   };
 
+  InputChangeHandler = event => {
+    const { name, value } = event.currentTarget;
+
+    this.setState({ [name]: value });
+
+    console.log(this.state.filter);
+  };
+
   render() {
     return (
       <section>
@@ -25,14 +36,10 @@ class App extends Component {
         <ContactForm onSubmit={this.formSubmitHandler} />
 
         <h2>Contacts</h2>
-        <ul>
-          {this.state.contacts.map(({ name, id, number }) => (
-            <li key={id}>
-              <span>{name}</span>
-              <span>{number}</span>
-            </li>
-          ))}
-        </ul>
+
+        <Filter filter={this.state.filter} onChange={this.InputChangeHandler} />
+
+        <ContactList contacts={this.state.contacts} />
       </section>
     );
   }
