@@ -5,12 +5,13 @@ class App extends Component {
   state = {
     contacts: [],
     name: '',
+    number: '',
   };
 
   handleInputChange = event => {
-    this.setState({
-      name: event.currentTarget.value,
-    });
+    const { name, value } = event.currentTarget;
+
+    this.setState({ [name]: value });
   };
 
   handleFormSubmit = event => {
@@ -19,7 +20,7 @@ class App extends Component {
     this.setState(prevState => ({
       contacts: [
         ...prevState.contacts,
-        ...[{ name: this.state.name, id: uuidv4() }],
+        ...[{ name: this.state.name, number: this.state.number, id: uuidv4() }],
       ],
     }));
   };
@@ -34,6 +35,17 @@ class App extends Component {
             <input
               type="text"
               name="name"
+              value={this.state.name}
+              onChange={this.handleInputChange}
+            ></input>
+          </label>
+
+          <label>
+            Number
+            <input
+              type="number"
+              name="number"
+              value={this.state.number}
               onChange={this.handleInputChange}
             ></input>
           </label>
@@ -41,8 +53,11 @@ class App extends Component {
         </form>
         <h2>Contacts</h2>
         <ul>
-          {this.state.contacts.map(({ name, id }) => (
-            <li key={id}>{name}</li>
+          {this.state.contacts.map(({ name, id, number }) => (
+            <li key={id}>
+              <span>{name}</span>
+              <span>{number}</span>
+            </li>
           ))}
         </ul>
       </section>
