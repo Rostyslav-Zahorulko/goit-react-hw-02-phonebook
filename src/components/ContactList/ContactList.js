@@ -1,18 +1,13 @@
 import PropTypes from 'prop-types';
-
 import ContactListItem from '../ContactListItem';
 
-const ContactList = ({ contacts }) => {
-  const a = Math.random() > 0.5;
-
-  return (
-    <ul>
-      {contacts.map(({ name, number, id }) => (
-        <ContactListItem name={name} number={number} key={id} />
-      ))}
-    </ul>
-  );
-};
+const ContactList = ({ contacts }) => (
+  <ul>
+    {contacts.map(({ name, number, id }) => (
+      <ContactListItem name={name} number={number} key={id} />
+    ))}
+  </ul>
+);
 
 ContactList.propTypes = {
   contacts: PropTypes.arrayOf(

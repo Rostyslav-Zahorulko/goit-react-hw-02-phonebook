@@ -22,10 +22,6 @@ class ContactForm extends Component {
 
     this.props.onSubmit(this.state);
 
-    this.formReset();
-  };
-
-  formReset = () => {
     this.setState({ name: '', number: '' });
   };
 
@@ -59,5 +55,9 @@ class ContactForm extends Component {
     );
   }
 }
+
+ContactForm.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+};
 
 export default ContactForm;

@@ -11,35 +11,44 @@ class App extends Component {
     filter: '',
   };
 
-  formSubmitHandler = ({ name, number }) => {
-    this.setState(prevState => ({
-      contacts: [
-        ...prevState.contacts,
-        ...[{ name: name, number: number, id: uuidv4() }],
-      ],
+  addContact = ({ name, number }) => {
+    const contact = { name, number, id: uuidv4() };
+
+    this.setState(({ contacts }) => ({
+      contacts: [...contacts, contact],
     }));
   };
 
-  InputChangeHandler = event => {
+  filterHandler = event => {
     const { name, value } = event.currentTarget;
 
     this.setState({ [name]: value });
+  };
 
-    console.log(this.state.filter);
+  filterContacts = () => {
+    const { contacts, filter } = this.state;
+    const lowercasedFilter = filter.toLowerCase();
+
+    return contacts.filter(({ name }) =>
+      name.toLowerCase().includes(lowercasedFilter),
+    );
   };
 
   render() {
+    const { filter } = this.state;
+    const filteredContacts = this.filterContacts();
+
     return (
       <section>
         <h1>Phonebook</h1>
 
-        <ContactForm onSubmit={this.formSubmitHandler} />
+        <ContactForm onSubmit={this.addContact} />
 
         <h2>Contacts</h2>
 
-        <Filter filter={this.state.filter} onChange={this.InputChangeHandler} />
+        <Filter filter={filter} onChange={this.filterHandler} />
 
-        <ContactList contacts={this.state.contacts} />
+        <ContactList contacts={filteredContacts} />
       </section>
     );
   }
