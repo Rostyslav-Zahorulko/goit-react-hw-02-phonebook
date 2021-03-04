@@ -11,7 +11,7 @@ class App extends Component {
     filter: '',
   };
 
-  addContact = ({ name, number }) => {
+  addContact = (name, number) => {
     const contact = { name, number, id: uuidv4() };
 
     this.setState(({ contacts }) => ({
@@ -19,13 +19,19 @@ class App extends Component {
     }));
   };
 
-  filterHandler = event => {
+  deleteContact = contactId => {
+    this.setState(({ contacts }) => ({
+      contacts: contacts.filter(({ id }) => id !== contactId),
+    }));
+  };
+
+  filterContactsByName = event => {
     const { name, value } = event.currentTarget;
 
     this.setState({ [name]: value });
   };
 
-  filterContacts = () => {
+  getFilteredContacts = () => {
     const { contacts, filter } = this.state;
     const lowercasedFilter = filter.toLowerCase();
 
@@ -36,20 +42,20 @@ class App extends Component {
 
   render() {
     const { filter } = this.state;
-    const filteredContacts = this.filterContacts();
+    const filteredContacts = this.getFilteredContacts();
 
     return (
-      <section>
+      <div>
         <h1>Phonebook</h1>
 
         <ContactForm onSubmit={this.addContact} />
 
         <h2>Contacts</h2>
 
-        <Filter filter={filter} onChange={this.filterHandler} />
+        <Filter filter={filter} onChange={this.filterContactsByName} />
 
-        <ContactList contacts={filteredContacts} />
-      </section>
+        <ContactList contacts={filteredContacts} onClick={this.deleteContact} />
+      </div>
     );
   }
 }

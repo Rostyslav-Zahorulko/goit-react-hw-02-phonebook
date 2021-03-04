@@ -1,10 +1,15 @@
 import PropTypes from 'prop-types';
 import ContactListItem from '../ContactListItem';
 
-const ContactList = ({ contacts }) => (
+const ContactList = ({ contacts, onClick }) => (
   <ul>
     {contacts.map(({ name, number, id }) => (
-      <ContactListItem name={name} number={number} key={id} />
+      <ContactListItem
+        name={name}
+        number={number}
+        key={id}
+        onClick={() => onClick(id)}
+      />
     ))}
   </ul>
 );
@@ -17,6 +22,7 @@ ContactList.propTypes = {
       id: PropTypes.string.isRequired,
     }),
   ).isRequired,
+  onClick: PropTypes.func.isRequired,
 };
 
 export default ContactList;
