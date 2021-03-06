@@ -38,6 +38,8 @@ class ContactForm extends Component {
             type="text"
             name="name"
             value={name}
+            required
+            placeholder="John Smith"
             onChange={this.handleInputChange}
           ></input>
         </label>
@@ -45,9 +47,12 @@ class ContactForm extends Component {
         <label>
           Number
           <input
-            type="number"
+            type="tel"
             name="number"
             value={number}
+            required
+            placeholder="111-11-11"
+            pattern="[0-9]{3}-[0-9]{2}-[0-9]{2}"
             onChange={this.handleInputChange}
           ></input>
         </label>
