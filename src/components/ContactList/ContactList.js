@@ -1,8 +1,10 @@
 import PropTypes from 'prop-types';
 import ContactListItem from '../ContactListItem';
 
+import './ContactList.css';
+
 const ContactList = ({ contacts, onClick }) => (
-  <ul>
+  <ul className="contact-list">
     {contacts.map(({ name, number, id }) => (
       <ContactListItem
         name={name}

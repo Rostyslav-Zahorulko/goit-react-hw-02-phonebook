@@ -5,6 +5,8 @@ import ContactForm from './components/ContactForm';
 import Filter from './components/Filter';
 import ContactList from './components/ContactList';
 
+import './App.css';
+
 class App extends Component {
   state = {
     contacts: [],
@@ -55,11 +57,11 @@ class App extends Component {
 
     return (
       <div>
-        <h1>Phonebook</h1>
+        <h1 className="app-title">Phonebook</h1>
 
         <ContactForm onSubmit={this.addContact} />
 
-        <h2>Contacts</h2>
+        <h2 className="section-title">Contacts</h2>
 
         <Filter filter={filter} onChange={this.filterContactsByName} />
 
