@@ -15,14 +15,31 @@
   display: block;
   width: 155px;
   margin-top: 5px;
+  border: 2px solid silver;
   font-size: 12px;
+}
+
+.form-input:hover,
+.form-input:focus {
+  outline: none;
+  border: 2px solid skyblue;
 }
 
 .add-contact-button {
   min-width: 80px;
-  padding: 3px 5px;
-  border: 1px solid silver;
+  padding: 2px 3px;
+  border: 2px solid silver;
   border-radius: 5px;
   font-size: 12px;
   background-color: #ffffff;
+}
+
+.add-contact-button:hover,
+.add-contact-button:focus {
+  outline: none;
+  border: 2px solid skyblue;
+}
+
+.add-contact-button:active {
+  background-color: skyblue;
 }

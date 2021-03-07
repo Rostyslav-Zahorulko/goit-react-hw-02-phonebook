@@ -13,7 +13,7 @@
   margin-right: 10px;
   width: 5px;
   height: 5px;
-  border-radius: 50%;
+  border-radius: 50px;
   background-color: #000000;
 }
 
@@ -34,9 +34,19 @@
 
 .delete-contact-button {
   min-width: 55px;
-  padding: 3px 5px;
-  border: 1px solid silver;
+  padding: 2px 3px;
+  border: 2px solid silver;
   border-radius: 5px;
   font-size: 12px;
   background-color: #ffffff;
+}
+
+.delete-contact-button:hover,
+.delete-contact-button:focus {
+  outline: none;
+  border: 3px solid skyblue;
+}
+
+.delete-contact-button:active {
+  background-color: skyblue;
 }
